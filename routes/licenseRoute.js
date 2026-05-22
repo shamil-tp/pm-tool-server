@@ -25,7 +25,7 @@ router.post('/activate', async (req, res) => {
     // 4. Generate an access token (JWT)
     const token = jwt.sign(
       { activated: true, keyId: license._id }, 
-      process.env.JWT_SECRET, 
+      process.env.JWT_SECRET || 'fallback_secret_for_local_development', 
       { expiresIn: '30d' } // Set an expiration based on your needs
     );
 

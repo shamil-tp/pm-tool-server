@@ -3,12 +3,16 @@ const express = require('express')
 const connectDB = require('./config/db')
 
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
+
+const cors = require('cors');
+app.use(cors());
+app.use(express.json());
 
 app.get('/',(req,res)=>{
     res.status(200).json({
         message:'welcome to pm-tool server'
-    }).redirect
+    })
 })
 
 const licenseRoute = require('./routes/licenseRoute')
@@ -16,8 +20,7 @@ app.use("/",licenseRoute)
 
 app.get('/test',(req,res)=>{
     res.status(200).json({
-        message:'test route success backend running successfully',
-	url:'https://resolve-pm.vercel.app/'
+        message:'test route success backend running successfully'
     })
 })
 
